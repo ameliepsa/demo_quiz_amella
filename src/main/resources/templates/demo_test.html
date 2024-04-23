@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<form action = '#' th:action="@{/quiz/save}" th:object="${test_attribute}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+<input th:field="*{text}"/>
+    <input type="submit" value="Save"></input>
+</form>
+</body>
+</html>
