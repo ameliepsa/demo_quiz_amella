@@ -7,7 +7,7 @@
 <body>
 <form action = '#' th:action="@{/quiz/save}" th:object="${test_attribute}" method="post">
     <input type="hidden" th:field="*{id}"/></input>
-    <span th:field="*{text}"></span>
+    <span th:text="*{text}"></span>
     <br>
 <input></input>
     <input type="submit" value="Save"></input>
