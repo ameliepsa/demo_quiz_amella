@@ -25,9 +25,23 @@ public class QuizController {
         return "demo_test";
     }
 
+   // @PostMapping("/save")
+
+//    public String save(int aa) {
+//        for (Answer a : repo.findById(1).get().getAnwers()) {
+//            {
+//                if (a.getCorrect()) {
+//                    System.out.println("Richtig");
+//                } else {
+//                    System.out.println("Falsch");
+//                }
+//            }
+//        }
+//        return "redirect:/quiz/test";
+//
+//    }
     @PostMapping("/save")
     public String save(Question q) {
-        System.out.println("Text geändert auf " + q.getText());
         repo.save(q);
         return "redirect:/quiz/test";
     }
