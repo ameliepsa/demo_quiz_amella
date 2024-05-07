@@ -3,6 +3,7 @@ package at.spengergasse.demo_quiz;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "q_questions", schema = "demo_quiz", catalog = "")
@@ -16,7 +17,7 @@ public class Question {
     private String text;
     @OneToMany
     @JoinColumn(name = "a_question_id")
-    private Collection<Answer> answers;
+    private List<Answer> answers;
 
     public int getId() {
         return id;
@@ -54,11 +55,11 @@ public class Question {
         return result;
     }
 
-    public Collection<Answer> getAnwers() {
+    public List<Answer> getAnswers() {
         return answers;
     }
 
-    public void setAnwers(Collection<Answer> anwers) {
+    public void setAnwers(List<Answer> anwers) {
         this.answers = answers;
     }
 }

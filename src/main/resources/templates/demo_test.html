@@ -7,9 +7,9 @@
 <h1> QUIZ- Teste dein Wissen!</h1>
 <body>
 <form action = '#' th:action="@{/quiz/save}" th:object="${test_attribute}" method="post">
-    <p th:each="a:${test_attribute.anwers}">
-        <span th:text="${a.text}"></span>
-        <input type="radio" name="choice" th:value="${a.id}"></input>
+    <p th:each="answer, stat:*{answers}">
+        <span th:text="${answer.text}"></span>
+        <input type="radio" name="answer" th:value="${answer.id}"></input>
 
     </p>
     <input type="hidden" th:field="*{id}"/></input>

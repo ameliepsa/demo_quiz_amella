@@ -11,38 +11,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class QuizController {
 
     private IQuestionRepository repo;
+    private int id = 1;
 
     public QuizController(IQuestionRepository repo) {
         this.repo = repo;
     }
 
+    Question q;
+
     @GetMapping("/test")
     public String test(Model model) {
         System.out.println("test wurde aufgerufen");
-        Question q = repo.findById(1).get();
-        // q.setText("Wie viele Beine hat ein Hund?");
+        q = repo.findById(id).get();
         model.addAttribute("test_attribute", q);
         return "demo_test";
     }
 
-   // @PostMapping("/save")
+    int score = 0;
 
-//    public String save(int aa) {
-//        for (Answer a : repo.findById(1).get().getAnwers()) {
-//            {
-//                if (a.getCorrect()) {
-//                    System.out.println("Richtig");
-//                } else {
-//                    System.out.println("Falsch");
-//                }
-//            }
-//        }
-//        return "redirect:/quiz/test";
-//
-//    }
     @PostMapping("/save")
-    public String save(Question q) {
-        repo.save(q);
-        return "redirect:/quiz/test";
+    public String save(int answer) {
+        for (Answer a : q.getAnswers()) {
+            if (a.getCorrect() && a.getId() == answer) {
+                score++;
+            }
+        }
+
+        if (id >= 5) {
+            return "redirect:/quiz/end";
+        }
+        else{
+            id++;
+            return "redirect:/quiz/test";
+        }
     }
+
+    @GetMapping("/end")
+    public String end(Model model) {
+        model.addAttribute("score", score);
+        return "endpage";
+
+    }
+
 }
+
+
